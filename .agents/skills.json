@@ -1,0 +1,9 @@
+{
+  "entries": [
+    { "path": "frontend/skills/01-planejamento" },
+    { "path": "frontend/skills/02-direcao-visual" },
+    { "path": "frontend/skills/03-auditoria-ux" },
+    { "path": "frontend/skills/04-conversao-e-produto" },
+    { "path": "frontend/skills/05-animacoes-e-ui-engineering" }
+  ]
+}

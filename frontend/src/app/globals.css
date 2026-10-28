@@ -1,0 +1,249 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Motion tokens (Emil Kowalski — animate skill) */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Light Mode — Warm Editorial Paper */
+  --background: #f6f5f0;
+  --foreground: #141514;
+
+  --card: #ffffff;
+  --card-hover: #fcfbf9;
+  --card-foreground: #141514;
+
+  --popover: #ffffff;
+  --popover-foreground: #141514;
+
+  --primary: #141514;
+  --primary-foreground: #f6f5f0;
+  --primary-hover: #2a2c2a;
+
+  --secondary: #eceae2;
+  --secondary-foreground: #141514;
+
+  --muted: #efede6;
+  --muted-foreground: #686a65;
+
+  --accent: #e3e1d8;
+  --accent-foreground: #141514;
+
+  --brand: #0d9488;
+  --brand-muted: #ccfbf1;
+
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+
+  --border: #e2e0d6;
+  --input: #e2e0d6;
+  --ring: #141514;
+
+  --radius: 1rem;
+}
+
+.dark {
+  /* Dark Mode — Obsidian & Mineral Sage */
+  --background: #0a0b0a;
+  --foreground: #ededec;
+
+  --card: #121413;
+  --card-hover: #181b19;
+  --card-foreground: #ededec;
+
+  --popover: #161817;
+  --popover-foreground: #ededec;
+
+  --primary: #ededec;
+  --primary-foreground: #0a0b0a;
+  --primary-hover: #d4d4d2;
+
+  --secondary: #191c1a;
+  --secondary-foreground: #ededec;
+
+  --muted: #141615;
+  --muted-foreground: #858a86;
+
+  --accent: #1f2321;
+  --accent-foreground: #ededec;
+
+  --brand: #2dd4bf;
+  --brand-muted: rgba(45, 212, 191, 0.12);
+
+  --destructive: #f87171;
+  --destructive-foreground: #0a0b0a;
+
+  --border: #202422;
+  --input: #202422;
+  --ring: #2dd4bf;
+}
+
+@theme inline {
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-mono: var(--font-mono), monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-brand: var(--brand);
+  --color-brand-muted: var(--brand-muted);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-xl: var(--radius);
+  --radius-lg: calc(var(--radius) - 2px);
+  --radius-md: calc(var(--radius) - 4px);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+/* ==========================================================================
+   Micro-interactions & Motion Recipes (skills: find-animation-opportunities + animate)
+   ========================================================================== */
+
+/* 1. Physical press feedback on buttons & interactive controls */
+.btn-press {
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.btn-press:active {
+  transform: scale(0.97);
+}
+
+/* 2. Notebook Dossier Card — Staggered entry + Pointer-gated hover + Active press */
+@keyframes cardEnter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.notebook-card {
+  opacity: 0;
+  animation: cardEnter 300ms var(--ease-out) forwards;
+  transition:
+    transform 180ms var(--ease-out),
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .notebook-card:hover {
+    background-color: var(--card-hover);
+    border-color: color-mix(in srgb, var(--foreground) 18%, var(--border));
+    transform: translateY(-2px);
+  }
+}
+
+.notebook-card:active {
+  transform: scale(0.985);
+}
+
+/* 3. Dropdown / Popover — Trigger-anchored spatial consistency */
+@keyframes popoverIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes popoverOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.popover-surface[data-state="open"] {
+  animation: popoverIn 180ms var(--ease-out) forwards;
+}
+
+.popover-surface[data-state="closed"] {
+  animation: popoverOut 140ms var(--ease-out) forwards;
+}
+
+/* 4. Centered Modal & Backdrop */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-surface[data-state="open"] {
+  animation: modalIn 220ms var(--ease-out) forwards;
+}
+
+.modal-backdrop[data-state="open"] {
+  animation: backdropIn 220ms var(--ease-out) forwards;
+}
+
+/* 5. Reduced motion — gentler variants, drop transform movement */
+@media (prefers-reduced-motion: reduce) {
+  .notebook-card {
+    animation: backdropIn 150ms ease forwards;
+    transition: background-color 150ms ease, border-color 150ms ease;
+  }
+  .notebook-card:hover,
+  .notebook-card:active,
+  .btn-press:active {
+    transform: none;
+  }
+  .popover-surface[data-state="open"],
+  .modal-surface[data-state="open"] {
+    animation: backdropIn 150ms ease forwards;
+  }
+}
