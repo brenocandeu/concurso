@@ -32,7 +32,7 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-content"
         sideOffset={sideOffset}
         className={cn(
-          "popover-surface z-50 min-w-[11rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-xl border border-border bg-popover p-1.5 text-popover-foreground shadow-xl",
+          "popover-surface z-50 min-w-[11rem] origin-(--radix-dropdown-menu-content-transform-origin) overflow-hidden rounded-lg border border-border bg-popover p-1 text-popover-foreground shadow-xl",
           className
         )}
         {...props}
@@ -53,7 +53,7 @@ function DropdownMenuItem({
       data-slot="dropdown-menu-item"
       data-variant={variant}
       className={cn(
-        "relative flex cursor-pointer items-center gap-2.5 rounded-lg px-2.5 py-2 text-xs font-medium outline-hidden select-none transition-colors focus:bg-secondary focus:text-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 [&_svg]:size-3.5 [&_svg]:shrink-0",
+        "relative flex cursor-pointer items-center gap-2.5 rounded-sm px-2.5 py-2 text-xs font-medium outline-hidden select-none transition-colors focus:bg-secondary focus:text-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:focus:bg-destructive/10 [&_svg]:size-3.5 [&_svg]:shrink-0",
         className
       )}
       {...props}

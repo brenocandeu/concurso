@@ -25,7 +25,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Acervo — Cadernos Inteligentes para Concursos",
   description:
-    "Plataforma colaborativa de estudos para concursos públicos com leitura de editais, provas comentadas e flashcards por repetição espaçada.",
+    "Plataforma de estudos para concursos públicos com leitura de editais, provas comentadas e flashcards por repetição espaçada.",
 };
 
 export default function RootLayout({

@@ -41,8 +41,6 @@
   --border: #e2e0d6;
   --input: #e2e0d6;
   --ring: #141514;
-
-  --radius: 1rem;
 }
 
 .dark {
@@ -110,9 +108,12 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
-  --radius-xl: var(--radius);
-  --radius-lg: calc(var(--radius) - 2px);
-  --radius-md: calc(var(--radius) - 4px);
+  /* Crisp, disciplined border-radius scale */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
 }
 
 body {
